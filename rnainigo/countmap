@@ -19,6 +19,6 @@ TOTAL = sum(READS)
 #PRINT OUTPUT
 
 for key, value in data.items():
-        print key, "%.2f" %(int(value)/TOTAL)
+        print key, "%.2f%%" %(int(value)/TOTAL*100)
 
 
