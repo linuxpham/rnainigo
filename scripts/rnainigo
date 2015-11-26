@@ -37,7 +37,7 @@ if hash bwa 2>/dev/null; then
 		bwa mem -t 4 ${REF} ${READS}|countmap > stat
 	else
 		bwa index ${REF}
-		bwa mem -t ${THREADS} ${REF} ${READS}|countmap > stat
+		bwa mem -t ${THREADS} ${REF} ${READS}|countmap > ${READS}.stat
 	fi
 else
 	echo "Please install BWA 0.7+ to use mem method. Aborting!"
