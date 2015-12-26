@@ -12,9 +12,9 @@ $ aluline --reference <humrep.ref> <humsub.ref> --ThreadsN <number of threads> -
 
 Some parameters required to have the program work:
 	--reference  Path to two reference sequences ALU and LINE
-	--reads Path to your short reads, in FASTQ format
+	--reads  Path to your short reads, in FASTQ format
 Optional parameter:
-	--ThreadsN max Threads For parallel computing in BWA alignment process
+	--ThreadsN  max Threads For parallel computing in BWA alignment process
 Example:
 $ aluline --reference rnainigo/lib/humrep.ref rnainigo/lib/humsub.ref --ThreadsN 32 --reads read1.fq.gz read2.fq.gz --outdir output
 
