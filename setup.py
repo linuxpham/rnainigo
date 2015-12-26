@@ -11,7 +11,8 @@ setup(name='rnainigo',
 	author='ptdtan',
 	author_email='ptdtan@gmail.com',
 	license='MIT',
-	scripts=['scripts/countmap','scripts/rnainigo'],
+	scripts=['scripts/countmap','scripts/rnainigo','scripts/aluline'],
 	packages=['rnainigo'],
+	install_requires=['hashlib','argparse'],
 	zip_safe=False)
 	

@@ -1,0 +1,67 @@
+#!/usr/bin/env python
+
+import os,sys
+import argparse
+import hashlib
+import subprocess
+
+#MD5 function
+def MD5string(strData):
+	m=hashlib.md5()
+	m.update(strData.encode('UTF-8'))
+	return m.hexdigest()
+	
+#How to execute a command
+def exeCommand(sCommand):
+
+###Get all output data
+	outData, errData = subprocess.Popen(sCommand, shell=True, stdout=subprocess.PIPE,stderr=subprocess.STDOUT, close_fds=True).communicate()
+
+###Get all response data
+	for lineData in outData.splitlines():
+		#if(self.RUNNING_DEBUG_FLAG == 1):
+		outStringData = str(lineData)
+		print("%s" % (outStringData))
+###If there is error
+	if((errData != None) and (len(errData) > 0)):
+		print("Command has error:{0}".format(errData))
+
+def shellEscape(s):
+	return s.replace("(","\(").replace(")","\)")
+
+if __name__ == '__main__':
+	parser=argparse.ArgumentParser(description='Calculate expression level of ALU/LINE level')
+	parser.add_argument('--reads', '-U', type=str,help='Input RNA reads paired or unpaired', nargs='+', required=True)
+	parser.add_argument('--outdir', '-o',type=str, help='Output')
+	parser.add_argument('--ThreadsN', metavar='N', type=str, help='Number of threads', default='4')
+	parser.add_argument('--reference','-r',type=str,help='ALU/LINE reference sequence',required=True)
+	args=parser.parse_args()
+	
+	if args.outdir:
+		outdir = os.path.abspath(args.outdir)
+	else:
+		outdir = os.path.abspath(os.environ['PWD'])
+	
+	#Main program
+
+	try:
+		os.makedirs(output)
+	except OSError:
+		pass
+
+	#====Generate file name====
+
+	uname=MD5string(args.reads[0])
+
+	#====Index====
+
+	exeCommand(' '.join('bwa index',args.reference))
+	
+	#====Alignment====
+
+	if len(args.reads)==1:
+		exeCommand(' '.join('bwa mem', '-t',args.ThreadsN,args.reference,args.reads[0],'|','countmap','>',outdir+'/'+uname+'.stat'))
+	if len(args.reads)==2:
+                exeCommand(' '.join('bwa mem', '-t',args.ThreadsN,args.reference,args.reads[0],args.reads[1],'|','countmap','>',outdir+'/'+uname+'.stat'))
+
+	
