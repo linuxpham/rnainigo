@@ -1,3 +1,5 @@
+MANIFEST.in
+README.rst
 setup.py
 /
 rnainigo/__init__.py
@@ -5,6 +7,8 @@ rnainigo.egg-info/PKG-INFO
 rnainigo.egg-info/SOURCES.txt
 rnainigo.egg-info/dependency_links.txt
 rnainigo.egg-info/not-zip-safe
+rnainigo.egg-info/requires.txt
 rnainigo.egg-info/top_level.txt
+scripts/aluline
 scripts/countmap
 scripts/rnainigo
