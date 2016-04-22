@@ -13,6 +13,6 @@ setup(name='rnainigo',
 	license='MIT',
 	scripts=['scripts/countmap','scripts/rnainigo','scripts/aluline'],
 	packages=['rnainigo'],
-	install_requires=['hashlib','argparse'],
+	install_requires=['argparse'],
 	zip_safe=False)
 	
