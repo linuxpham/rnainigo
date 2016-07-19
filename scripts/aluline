@@ -71,10 +71,10 @@ if __name__ == '__main__':
 	if len(args.reads)==1:
 		for ref in args.reference:
 			exeCommand(' '.join(['bwa mem', 
-'-t',args.ThreadsN,ref,args.reads[0],'|','countmap','>',outdir+'/'+uname+refname[ref]+'.stat']))
+'-t',args.ThreadsN,ref,args.reads[0],'|','countmap','>',outdir+'/final.'+refname[ref]+'.stat']))
 	if len(args.reads)==2:
 		for ref in args.reference:
 			exeCommand(' '.join(['bwa mem', 
-'-t',args.ThreadsN,ref,args.reads[0],args.reads[1],'|','countmap','>',outdir+'/'+uname+refname[ref]+'.stat']))
+'-t',args.ThreadsN,ref,args.reads[0],args.reads[1],'|','countmap','>',outdir+'/final.'+refname[ref]+'.stat']))
 
 	
